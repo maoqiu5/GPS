@@ -1,0 +1,18 @@
+# Copy to /root/apps/gps/.env.production on the VPS and fill values there.
+# Do not commit the real .env.production file.
+
+HBT_APP_KEY=
+HBT_APP_SECRET=
+HBT_API_URL=https://openapi.51hbt.com/
+
+GPS_ROOT_DIR=/root/apps/gps
+GPS_DB_PATH=/root/apps/gps/data/gps/gps_tracking.db
+GPS_SCHEMA_PATH=/root/apps/gps/schema/HBT_SQLITE_SCHEMA.sql
+GPS_LOG_DIR=/root/apps/gps/logs
+
+START_AT=2026-06-23 00:00:00
+TRACK_MAX_WINDOWS=20
+TRACK_ORDER_BY=online_recent
+ALARM_MAX_WINDOWS=8
+SITE_MAX_WINDOWS=2
+SLEEP_SECONDS=0.5

@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Codex and local agent scratch space
+.codex/
+.codex-*/
+.agents/
+.codex_migration_restore/
+.work/
+work/
+
+# Runtime data and generated outputs
+data/
+logs/
+runtime/
+backups/
+secrets/
+outputs/
+
+# Environment and secrets
+.env
+.env.*
+!.env.production.example
+!.env.example
+
+# Databases
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.db-shm
+*.db-wal
+
+# Backups and pre-change snapshots
+*.bak
+*.backup-*
+*.pre-*
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local SSH/host state
+known_hosts
