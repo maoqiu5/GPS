@@ -280,14 +280,13 @@ GPS 轨迹可视化项目用于读取设备导出的 GPS 轨迹点数据和服�
   - 俄罗斯门点匹配 `russia` 站点。
   - 白俄罗斯门点匹配 `belarus` 站点。
   - 无法判断国家时保留全站点兜底。
-- 站点范围包含 43 个常用目的站：杜伊斯堡、马拉舍维奇、汉堡、蒂尔堡、鹿特丹 RSC、诺伊斯 Contargo、贝尔格莱德、布达佩斯、East-West Gate Fényeslitke、克雷姆斯、曼海姆 DUSS、伦敦 Barking、Sławków/Katowice、罗兹 Spedcont、布拉格、华沙、慕尼黑、纽伦堡 TriCon、米兰、列日、Česká Třebová、Dunajská Streda、巴塞罗那、不莱梅哈芬 NTB、威廉港 JadeWeserPort、Vorsino、Selyatino、Bely Rast、Elektrougli、Khovrino、Kolyadichi、Yekaterinburg、Shushary、Kleshchikha、Kazan、Almaty、Altynkol、Tashkent Chukursay、Aktau Port、Poti、Baku、Tbilisi、Minsk Kolodishchi。
+- 站点范围包含 30 个常用目的站：杜伊斯堡、马拉舍维奇、汉堡、蒂尔堡、贝尔格莱德、布达佩斯、克雷姆斯、伦敦 Barking、Sławków/Katowice、布拉格、华沙、慕尼黑、米兰、列日、Česká Třebová、巴塞罗那、Vorsino、Selyatino、Bely Rast、Elektrougli、Khovrino、Kolyadichi、Yekaterinburg、Shushary、Kleshchikha、Kazan、Almaty、Poti、Baku、Minsk Kolodishchi。
 - 查询接口为 `GET /api/truck-distance`：
   - 必填：`address` 或 `lat/lon`
   - 可选：`return_station`
-  - 可选：`station_group`，取值为 `auto`、`europe`、`central_asia`、`russia`、`belarus`；默认 `auto` 继续按门点国家自动匹配，手动选择时只计算指定区域站点。
 - 不传 `return_station` 时，返回距离为站点到门点的距离。
 - 传入 `return_station` 时，返回距离为站点到门点再到还空地的距离之和。
-- API `meta` 返回 `stationGroup`、`stationGroupMode`、`stationCount` 和 `totalStationCount`，用于确认当前按哪个区域组匹配以及是否手动覆盖。
+- API `meta` 返回 `stationGroup`、`stationCount` 和 `totalStationCount`，用于确认当前按哪个区域组匹配。
 - 结果表展示列为：序号、站点、公里、时间、卡车运费。
 - “来源”列不再展示给业务用户。
 - 地图显示所有站点到门点的路线；选择还空地时，路线包含门点到还空地段。
@@ -317,17 +316,7 @@ GPS 轨迹可视化项目用于读取设备导出的 GPS 轨迹点数据和服�
 
 该公式用于没有供应商报价表时的快速业务参考，不等同于最终供应商报价。后续如有实际承运商分区价、最低消费、跨境附加费、旺季附加费，可新增供应商报价表并优先匹配真实报价，匹配不到时再使用本估算模型兜底。
 
-### 4.1 外部市场参考
-
-- `truck_market_sources` 表记录 DHL Freight surcharge、Cargoboard API、Upply Benchmark、TIMOCOM Transport Barometer、Trans.eu API 等外部参考源。
-- `truck_market_rate_snapshots` 表记录公开燃油附加费、在线报价能力、指数/benchmark 能力等快照，带 `source_url`、`confidence` 和适用国家/区域。
-- `GET /api/truck-distance` 的 `meta.marketReferences` 返回适用于门点国家的市场参考快照。
-- 当前市场参考层只展示和记录，不参与 `freightEur` 自动调价；需有足够可靠的具体 lane price 或承运商分区价后再进入模型。
-- 页面提供“市场参考”模块，用于查看外部来源、快照数值、可信度和说明。
-- 卡车路线结果点击后展示 `freightModel` 运费拆解，包括重柜公里、还空公里、计费公里、公里单价、线路基础、燃油、跨境和区域系数。
-- 市场参考模块支持按 `metricType` 筛选；路线运费拆解支持复制内部说明，便于业务复核或发起供应商询价。
-
-### 4.2 供应商报价观察样本
+### 4.1 供应商报价观察样本
 
 - `truck_supplier_quote_observations` 表用于记录供应商反馈报价与系统当时估算结果。
 - 该表只做样本沉淀和后续校准依据，不参与当前 `freightEur` 自动计算。
@@ -347,7 +336,7 @@ GPS 轨迹可视化项目用于读取设备导出的 GPS 轨迹点数据和服�
 - 供应商报价可能包含供应商利润、短期车队资源、当天市场供需、车架/场站窗口等因素；单条样本不得直接反推全局参数。
 - 供应商报价中的 T-1、额外 HS Code、保证金、TRB Handling Fee、超时等待等条件费用记录在 `extra_charges_note`，不并入基础卡车价。
 
-### 4.3 地图瓦片缓存
+### 4.2 地图瓦片缓存
 
 - 页面注册 `sw.js` Service Worker，对已浏览和用户手动缓存的地图瓦片进行本地缓存。
 - 地图区域提供“缓存当前地图”按钮，缓存当前视野在相邻缩放层级的有限瓦片。

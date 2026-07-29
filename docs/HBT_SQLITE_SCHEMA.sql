@@ -234,27 +234,18 @@ VALUES
   ('malaszewicze', 'Małaszewicze / 马拉舍维奇', 'Małaszewicze, Poland', 'PL', 'europe', 'PKP Cargo Terminal / Europort Terminal', 'Station Małaszewicze, 21-540 Małaszewicze, Poland', 52.0264, 23.5298, '用户提供的中欧班列常用目的站资料', 20, 1),
   ('hamburg', 'Hamburg / 汉堡', 'Hamburg, Germany', 'DE', 'europe', 'DUSS Terminal Hamburg-Billiwerder', 'Wöhlerstraße 42, 22113 Hamburg, Germany', 53.5186, 10.1065, '用户提供的中欧班列常用目的站资料', 30, 1),
   ('tilburg', 'Tilburg / 蒂尔堡', 'Tilburg, Netherlands', 'NL', 'europe', 'Railport Brabant / GVT Terminal', 'Ringbaan-West 300, 5038 NX Tilburg, Netherlands', 51.5811, 5.0483, '用户提供的中欧班列常用目的站资料', 40, 1),
-  ('rotterdam-rsc', 'Rotterdam RSC / 鹿特丹', 'Rotterdam, Netherlands', 'NL', 'europe', 'Rail Service Center Rotterdam', 'Albert Plesmanweg 200-210, 3088 GD Rotterdam, Netherlands', 51.8722, 4.4283, 'RSC official address; Ships25 terminal coordinates', 45, 1),
-  ('neuss-contargo', 'Neuss Contargo / 诺伊斯', 'Neuss, Germany', 'DE', 'europe', 'Contargo Neuss Trimodal Terminal', 'Flosshafenstrasse 37, 41460 Neuss, Germany', 51.2195987, 6.70766, 'Contargo terminal address; Nominatim company-level geocode', 47, 1),
   ('belgrade', 'Belgrade / 贝尔格莱德', 'Belgrade, Serbia', 'RS', 'europe', 'Belgrade Ranžirna / Batajnica Logistics Center', 'Batajnički drum b.b., 11080 Belgrade, Serbia', 44.9081, 20.2858, '用户提供的中欧班列常用目的站资料', 50, 1),
   ('budapest', 'Budapest / 布达佩斯', 'Budapest, Hungary', 'HU', 'europe', 'BILK Logistics Terminal', 'Európa út 6, 1239 Budapest, Hungary', 47.3912, 19.1235, '用户提供的中欧班列常用目的站资料', 60, 1),
-  ('fenyeslitke-east-west-gate', 'East-West Gate Fényeslitke / 扎霍尼-费涅什利特凯', 'Fényeslitke / Záhony, Hungary', 'HU', 'europe', 'East-West Gate Intermodal Terminal', 'Fényeslitke, Hungary', 48.2853775, 22.1201239, 'East-West Gate official terminal GPS', 65, 1),
   ('krems', 'Krems / 克雷姆斯', 'Krems an der Donau, Austria', 'AT', 'europe', 'Hafen Krems / Metrans Krems Terminal', 'Karl-Mierka-Straße 102, 3500 Krems an der Donau, Austria', 48.4067, 15.6289, '用户提供的中欧班列常用目的站资料', 70, 1),
-  ('mannheim-duss', 'Mannheim DUSS / 曼海姆', 'Mannheim, Germany', 'DE', 'europe', 'DUSS Terminal Mannheim', 'Werfthallenstrasse 40, 68159 Mannheim, Germany', 49.4945387, 8.4500662, 'DUSS terminal address; Nominatim street/terminal-area geocode', 75, 1),
   ('london', 'London / 伦敦', 'London / Barking, United Kingdom', 'GB', 'europe', 'DB Cargo Barking Eurohub', 'Ripple Road, Barking IG11 0RH, United Kingdom', 51.5278, 0.1389, '用户提供的中欧班列常用目的站资料', 80, 1),
   ('katowice', 'Katowice / 卡托维兹', 'Katowice / Sławków, Poland', 'PL', 'europe', 'Sławków Euroterminal', 'ul. Groniec 1, 41-260 Sławków, Poland', 50.2925, 19.3408, '用户提供的中欧班列常用目的站资料', 90, 1),
-  ('lodz-spedcont', 'Łódź Spedcont / 罗兹', 'Łódź, Poland', 'PL', 'europe', 'Spedcont Łódź terminal', 'Tomaszowska 60, 93-231 Łódź, Poland', 51.7246208, 19.5419983, 'Spedcont terminal address; Nominatim door-level geocode', 95, 1),
   ('prague', 'Prague / 布拉格', 'Praha-Uhříněves, Czechia', 'CZ', 'europe', 'Metrans Terminal Praha-Uhříněves', 'Přátelství 681/81, 104 00 Praha 22-Uhříněves, Czechia', 50.0264, 14.5956, '用户提供的中欧班列常用目的站资料', 100, 1),
   ('warsaw', 'Warsaw / 华沙', 'Warszawa, Poland', 'PL', 'europe', 'PKP Cargo Terminal Warszawa-Praga', 'ul. Jagiellońska 88, 03-215 Warszawa, Poland', 52.2801, 21.0028, '用户提供的中欧班列常用目的站资料', 110, 1),
   ('munich', 'Munich / 慕尼黑', 'München, Germany', 'DE', 'europe', 'DUSS Terminal München-Riem', 'Landshuter Allee 38, 81829 München, Germany', 48.1392, 11.6881, '用户提供的中欧班列常用目的站资料', 120, 1),
-  ('nurnberg-tricon', 'Nürnberg TriCon / 纽伦堡', 'Nürnberg, Germany', 'DE', 'europe', 'TriCon Container-Terminal Nürnberg', 'Hamburger Strasse 59, 90451 Nürnberg, Germany', 49.4021364, 11.0531753, 'TriCon terminal address; Nominatim street/terminal-area geocode', 125, 1),
   ('milan', 'Milan / 米兰', 'Milano, Italy', 'IT', 'europe', 'Terminal Italia - Milano Smistamento', 'Via Chiese, 20126 Milano MI, Italy', 45.5183, 9.2205, '用户提供的中欧班列常用目的站资料', 130, 1),
   ('liege', 'Liège / 列日', 'Liège / Grâce-Hollogne, Belgium', 'BE', 'europe', 'Liège Logistics Intermodal (LLI)', 'Rue de l''Aéroport, 4460 Grâce-Hollogne, Belgium', 50.6381, 5.4489, '用户提供的中欧班列常用目的站资料', 140, 1),
   ('ceska-trebova', 'Česká Třebová / 切斯卡特拉波瓦', 'Česká Třebová, Czechia', 'CZ', 'europe', 'Metrans Terminal Česká Třebová', 'Semanínská 2110, 560 02 Česká Třebová, Czechia', 49.8928, 16.4422, '用户提供的中欧班列常用目的站资料', 150, 1),
-  ('dunajska-streda', 'Dunajská Streda / 多瑙斯特雷达', 'Dunajská Streda, Slovakia', 'SK', 'europe', 'METRANS Danubia Dunajská Streda', 'METRANS Danubia, Dunajská Streda, Slovakia', 47.980125, 17.632186, 'METRANS terminal page GPS', 155, 1),
   ('barcelona', 'Barcelona / 巴塞罗那', 'Barcelona, Spain', 'ES', 'europe', 'Terminal Can Tunis (Barcelona Port Rail)', 'Carrer 3, Parc Logístic, 08040 Barcelona, Spain', 41.3325, 2.1281, '用户提供的中欧班列常用目的站资料', 160, 1),
-  ('bremerhaven-ntb', 'Bremerhaven NTB / 不莱梅哈芬', 'Bremerhaven, Germany', 'DE', 'europe', 'NTB North Sea Terminal Bremerhaven', 'Senator-Borttscheller-Strasse 14, 27568 Bremerhaven, Germany', 53.5946658, 8.5370234, 'NTB terminal address; Nominatim company-level geocode', 162, 1),
-  ('wilhelmshaven-jwp', 'Wilhelmshaven JadeWeserPort / 威廉港', 'Wilhelmshaven, Germany', 'DE', 'europe', 'JadeWeserPort Wilhelmshaven', 'Pazifik 1, 26388 Wilhelmshaven, Germany', 53.5821209, 8.1396155, 'JadeWeserPort address; Nominatim port-office geocode', 164, 1),
   ('vorsino', 'Vorsino / 沃尔西诺', 'Vorsino, Russia', 'RU', 'russia', 'Freight Village Vorsino', 'North Industrial Area, bld. 6, Vorsino village, Kaluga Region, Russia', 55.2403, 36.6675, '用户提供的中欧班列常用目的站资料', 170, 1),
   ('selyatino', 'Selyatino / 谢利亚季诺', 'Selyatino, Russia', 'RU', 'russia', 'Terminal Selyatino', 'Selyatino, Naro-Fominsky District, Moscow Oblast, Russia', 55.5147, 36.9753, '用户提供的中欧班列常用目的站资料', 180, 1),
   ('bely-rast', 'Bely Rast / 别雷拉斯特', 'Bely Rast, Russia', 'RU', 'russia', 'TLK Bely Rast', 'Bely Rast Village, Dmitrovsky District, Moscow Oblast, Russia', 56.1628, 37.3828, '用户提供的中欧班列常用目的站资料', 190, 1),
@@ -266,9 +257,6 @@ VALUES
   ('kleshchikha', 'Kleshchikha / 克列西哈', 'Novosibirsk, Russia', 'RU', 'russia', 'Kleshchikha Terminal', 'ul. Stantsionnaya 60, Novosibirsk, Novosibirsk Oblast, Russia', 54.9912, 82.8051, '用户提供的中欧班列常用目的站资料', 250, 1),
   ('kazan', 'Kazan / 喀山', 'Kazan, Russia', 'RU', 'russia', 'Kazan-Kirovsky / Tikhoretskaya Terminal', 'ul. Tikhoretskaya 19, Kazan, Republic of Tatarstan, Russia', 55.7481, 49.1214, '用户提供的中欧班列常用目的站资料', 260, 1),
   ('almaty', 'Almaty / 阿拉木图', 'Almaty, Kazakhstan', 'KZ', 'central_asia', 'Almaty-1 Freight Yard', 'Turksib District, Almaty, Kazakhstan', 43.3422, 76.9497, '用户提供的中欧班列常用目的站资料', 270, 1),
-  ('altynkol', 'Altynkol / 阿腾科里', 'Altynkol, Kazakhstan', 'KZ', 'central_asia', 'Altynkol railway station', 'Altynkol railway station, Almaty Region, Kazakhstan', 44.16465759, 80.29522705, 'Alta/FreiCON railway-station coordinate reference', 275, 1),
-  ('tashkent-chukursay', 'Tashkent Chukursay / 塔什干丘库尔赛', 'Tashkent, Uzbekistan', 'UZ', 'central_asia', 'Chukursay railway station / customs terminal', 'Chukursay railway station, Tashkent, Uzbekistan', 41.38828, 69.23332, 'OSM/Mapcarta station coordinates; UNECE station listing cross-check', 276, 1),
-  ('aktau-port', 'Aktau Port / 阿克套港', 'Aktau, Kazakhstan', 'KZ', 'central_asia', 'Aktau International Sea Commercial Port', 'Port of Aktau, Aktau, Kazakhstan', 43.6465, 51.1638, 'Wikidata/port coordinate reference cross-check', 277, 1),
   ('poti', 'Poti / 波季', 'Poti, Georgia', 'GE', 'central_asia', 'APM Terminals Poti', '52 Demetre Tavdadebuli St, Poti 4400, Georgia', 42.1462, 41.6669, '用户提供的中欧班列常用目的站资料', 280, 1),
   ('baku', 'Baku / 巴库', 'Alyat / Baku, Azerbaijan', 'AZ', 'central_asia', 'Baku International Sea Trade Port (Alyat Terminal)', 'Baku International Sea Trade Port, Alyat, Baku, Azerbaijan', 40.0169, 49.4042, '用户提供的中欧班列常用目的站资料', 290, 1),
   ('tbilisi', 'Tbilisi / 第比利斯', 'Tbilisi, Georgia', 'GE', 'central_asia', 'Tbilisi Dry Port', 'Tbilisi Dry Port, Tbilisi, Georgia', 41.6634026, 44.9137714, 'Tbilisi Dry Port public location reference', 300, 1),
@@ -351,102 +339,6 @@ ON CONFLICT(rule_key) DO UPDATE SET
   multiplier=excluded.multiplier,
   note=excluded.note,
   sort_order=excluded.sort_order,
-  active=excluded.active,
-  updated_at=CURRENT_TIMESTAMP;
-
-CREATE TABLE IF NOT EXISTS truck_market_sources (
-  source_key TEXT PRIMARY KEY,
-  source_name TEXT NOT NULL,
-  source_type TEXT NOT NULL,
-  access_type TEXT NOT NULL,
-  coverage_note TEXT,
-  url TEXT,
-  reliability_level TEXT NOT NULL DEFAULT 'medium',
-  active INTEGER NOT NULL DEFAULT 1,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX IF NOT EXISTS idx_truck_market_sources_active
-  ON truck_market_sources(active, source_type);
-
-INSERT INTO truck_market_sources (
-  source_key, source_name, source_type, access_type, coverage_note, url, reliability_level, active
-)
-VALUES
-  ('dhl-freight-nl', 'DHL Freight Netherlands Surcharges', 'surcharge', 'public_web', '公开燃油附加费和道路附加费，适合作为月度 surcharge 锚点，不代表整车总价。', 'https://www.dhl.com/nl-en/home/freight/help-center-for-european-road-and-rail/dhl-freight-surcharges.html', 'high', 1),
-  ('dhl-freight-be', 'DHL Freight Belgium Surcharges', 'surcharge', 'public_web', '公开燃油附加费和公里收费，适合作为比利时/欧洲 surcharge 参考。', 'https://www.dhl.com/be-en/home/freight/help-center-for-european-road-and-rail/dhl-freight-surcharges.html', 'high', 1),
-  ('cargoboard-api', 'Cargoboard API', 'online_quote', 'account_api', '可在线生成报价/订单，偏普通道路货运/LTL/FTL；40HQ 集装箱底盘派送需谨慎映射。', 'https://docs.cargoboard.com/docs/usage', 'medium', 1),
-  ('upply-benchmark', 'Upply Benchmark', 'rate_benchmark', 'subscription', '欧洲道路运输 lane benchmark，适合作为国家/线路 €/km 和 spot/contract 市场锚点。', 'https://www.upply.com/en/benchmark', 'high', 1),
-  ('timocom-barometer', 'TIMOCOM Transport Barometer', 'market_tension', 'public_web', '欧洲货盘/车辆供需热度指标，适合做市场紧张度参考，不直接给 40HQ 门点价。', 'https://www.timocom.co.uk/services/transport-barometer', 'medium', 1),
-  ('trans-eu-api', 'Trans.eu API', 'freight_exchange', 'account_api', '平台货盘/议价/成交信息需要账号权限；若接入 accepted price，可用于邮件报价之外的成交样本。', 'https://www.trans.eu/api/', 'medium', 1)
-ON CONFLICT(source_key) DO UPDATE SET
-  source_name=excluded.source_name,
-  source_type=excluded.source_type,
-  access_type=excluded.access_type,
-  coverage_note=excluded.coverage_note,
-  url=excluded.url,
-  reliability_level=excluded.reliability_level,
-  active=excluded.active,
-  updated_at=CURRENT_TIMESTAMP;
-
-CREATE TABLE IF NOT EXISTS truck_market_rate_snapshots (
-  snapshot_id TEXT PRIMARY KEY,
-  source_key TEXT NOT NULL REFERENCES truck_market_sources(source_key),
-  observed_at TEXT NOT NULL,
-  valid_from TEXT,
-  valid_to TEXT,
-  geography_code TEXT,
-  lane_origin_country TEXT,
-  lane_destination_country TEXT,
-  equipment_type TEXT,
-  metric_type TEXT NOT NULL,
-  value_min REAL,
-  value_max REAL,
-  value_pct REAL,
-  currency TEXT,
-  unit TEXT,
-  confidence TEXT NOT NULL DEFAULT 'medium',
-  note TEXT,
-  source_url TEXT,
-  active INTEGER NOT NULL DEFAULT 1,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE INDEX IF NOT EXISTS idx_truck_market_rate_snapshots_lookup
-  ON truck_market_rate_snapshots(active, geography_code, metric_type, observed_at);
-
-INSERT INTO truck_market_rate_snapshots (
-  snapshot_id, source_key, observed_at, valid_from, valid_to, geography_code,
-  lane_origin_country, lane_destination_country, equipment_type, metric_type,
-  value_min, value_max, value_pct, currency, unit, confidence, note, source_url, active
-)
-VALUES
-  ('dhl-nl-fuel-domestic-2026-07', 'dhl-freight-nl', '2026-07-25', '2026-07-01', '2026-07-31', 'NL', NULL, 'NL', 'road_freight', 'fuel_surcharge_rate', NULL, NULL, 0.25, NULL, 'percent', 'high', 'DHL Freight Netherlands July 2026 domestic fuel surcharge public page；当前模型已用 NL 25%。', 'https://www.dhl.com/nl-en/home/freight/help-center-for-european-road-and-rail/dhl-freight-surcharges.html', 1),
-  ('dhl-nl-fuel-europe-2026-07', 'dhl-freight-nl', '2026-07-25', '2026-07-01', '2026-07-31', 'EUROPE', NULL, NULL, 'road_freight', 'fuel_surcharge_rate', NULL, NULL, 0.13, NULL, 'percent', 'high', 'DHL Freight Netherlands July 2026 Europe fuel surcharge public page；当前模型已用 Europe 13%。', 'https://www.dhl.com/nl-en/home/freight/help-center-for-european-road-and-rail/dhl-freight-surcharges.html', 1),
-  ('dhl-be-fuel-road-2026-07', 'dhl-freight-be', '2026-07-25', '2026-07-01', '2026-07-31', 'BE', NULL, 'BE', 'road_freight', 'fuel_surcharge_rate', NULL, NULL, 0.1428, NULL, 'percent', 'medium', 'DHL Freight Belgium public surcharge page observed road fuel surcharge；可作为 BE 线路复核锚点，尚未自动调参。', 'https://www.dhl.com/be-en/home/freight/help-center-for-european-road-and-rail/dhl-freight-surcharges.html', 1),
-  ('cargoboard-api-capability-2026-07', 'cargoboard-api', '2026-07-25', NULL, NULL, 'EUROPE', NULL, NULL, 'ltl_ftl_road', 'online_quote_capability', NULL, NULL, NULL, NULL, NULL, 'medium', 'Cargoboard API 可作为后续在线报价参考源；箱型/40HQ 底盘派送映射需单独验证，当前仅记录能力不入价。', 'https://docs.cargoboard.com/docs/usage', 1),
-  ('upply-benchmark-capability-2026-07', 'upply-benchmark', '2026-07-25', NULL, NULL, 'EUROPE', NULL, NULL, 'road_freight', 'rate_benchmark_capability', NULL, NULL, NULL, 'EUR', 'eur_per_km_or_lane', 'high', 'Upply Benchmark 可提供欧洲道路运输 lane benchmark；需要订阅/API 后才能入具体价格区间。', 'https://www.upply.com/en/benchmark', 1),
-  ('timocom-barometer-capability-2026-07', 'timocom-barometer', '2026-07-25', NULL, NULL, 'EUROPE', NULL, NULL, 'road_freight', 'market_tension_capability', NULL, NULL, NULL, NULL, 'supply_demand_index', 'medium', 'TIMOCOM Transport Barometer 可作为市场紧张度参考；不直接等同 40HQ 门点派送价格。', 'https://www.timocom.co.uk/services/transport-barometer', 1)
-ON CONFLICT(snapshot_id) DO UPDATE SET
-  source_key=excluded.source_key,
-  observed_at=excluded.observed_at,
-  valid_from=excluded.valid_from,
-  valid_to=excluded.valid_to,
-  geography_code=excluded.geography_code,
-  lane_origin_country=excluded.lane_origin_country,
-  lane_destination_country=excluded.lane_destination_country,
-  equipment_type=excluded.equipment_type,
-  metric_type=excluded.metric_type,
-  value_min=excluded.value_min,
-  value_max=excluded.value_max,
-  value_pct=excluded.value_pct,
-  currency=excluded.currency,
-  unit=excluded.unit,
-  confidence=excluded.confidence,
-  note=excluded.note,
-  source_url=excluded.source_url,
   active=excluded.active,
   updated_at=CURRENT_TIMESTAMP;
 

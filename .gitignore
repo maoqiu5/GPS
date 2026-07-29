@@ -7,6 +7,7 @@ node_modules/
 .codex-*/
 .agents/
 .codex_migration_restore/
+.engramory-memory/
 .work/
 work/
 
