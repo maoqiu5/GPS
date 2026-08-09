@@ -3,6 +3,13 @@
 本文档用于记录 GPS 轨迹可视化项目每次功能更新、修复和算法调整。
 
 
+## v0.32.0 - 2026-08-09
+
+### Changed
+
+- Removed the left module sidebar from the GPS trajectory page.
+- Moved the shared Chinese / English language switcher to the fixed top-right corner.
+
 ## v0.31.0 - 2026-08-08
 
 ### Added

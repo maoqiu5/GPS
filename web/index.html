@@ -8,22 +8,7 @@
   <style>
     html, body { height: 100%; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
     body { background: #f6f7f9; color: #18202a; }
-    .app-shell { min-height: 100%; display: grid; grid-template-columns: 220px minmax(0, 1fr); }
-    .app-shell.sidebar-collapsed { grid-template-columns: 58px minmax(0, 1fr); }
-    .sidebar { padding: 14px; background: #111827; color: #fff; display: grid; align-content: start; gap: 12px; }
-    .sidebar-toggle { width: 100%; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; background: rgba(255,255,255,.08); color: #fff; padding: 8px 10px; font: inherit; cursor: pointer; }
-    .brand { display: grid; gap: 4px; padding: 4px 2px 10px; border-bottom: 1px solid rgba(255,255,255,.16); }
-    .brand strong { font-size: 17px; }
-    .brand span { font-size: 12px; color: rgba(255,255,255,.72); }
-    .nav-btn { width: 100%; display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 8px; align-items: center; text-align: left; border: 1px solid #0f766e; border-radius: 8px; background: #0f766e; color: #fff; padding: 10px 11px; font: inherit; font-size: 14px; cursor: default; }
-    .nav-icon { display: grid; place-items: center; width: 24px; height: 24px; color: #fff; font-size: 16px; }
-    .nav-text { min-width: 0; }
-    .nav-label { color: #fff; font-size: 14px; font-weight: 650; }
-    .nav-hint { margin-top: 3px; color: rgba(255,255,255,.72); font-size: 12px; }
-    .sidebar-collapsed .brand span, .sidebar-collapsed .brand strong, .sidebar-collapsed .nav-text { display: none; }
-    .sidebar-collapsed .sidebar { padding: 12px 8px; }
-    .sidebar-collapsed .nav-btn { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 10px 6px; }
-    .sidebar-collapsed .sidebar-toggle { text-align: center; padding: 10px 6px; }
+    .app-shell { min-height: 100%; }
     .workspace { min-width: 0; display: grid; grid-template-columns: minmax(390px, 30vw) minmax(620px, 1fr); min-height: 100vh; }
     .control-pane { min-width: 0; padding: 10px 14px; display: grid; gap: 8px; align-content: start; background: #fff; border-right: 1px solid #d8dde5; overflow: auto; }
     .module-panel { display: none; gap: 8px; }
@@ -34,7 +19,7 @@
     .map-provider button, .query-bar button { height: 32px; border: 1px solid #1f2937; border-radius: 6px; background: #1f2937; color: #fff; padding: 0 12px; font: inherit; font-size: 13px; cursor: pointer; }
     .map-provider button { height: 30px; border-color: #cfd6df; background: #fff; color: #18202a; padding: 0 10px; }
     .map-provider button[aria-pressed="true"] { background: #0f766e; border-color: #0f766e; color: #fff; }
-    .language-switcher { display: inline-flex; gap: 4px; margin-left: auto; padding: 2px; border: 1px solid #cfd6df; border-radius: 7px; background: #fff; }
+    .language-switcher { position: fixed; top: 12px; right: 14px; z-index: 1200; display: inline-flex; gap: 4px; padding: 2px; border: 1px solid #cfd6df; border-radius: 7px; background: rgba(255,255,255,.96); box-shadow: 0 2px 8px rgba(0,0,0,.12); }
     .language-switcher button { height: 26px; border: 0; border-radius: 5px; background: transparent; color: #4c5968; padding: 0 8px; }
     .language-switcher button[aria-pressed="true"] { background: #0f766e; color: #fff; }
     .query-bar input, .query-bar select { height: 30px; min-width: 180px; border: 1px solid #cfd6df; border-radius: 6px; padding: 0 9px; font: inherit; font-size: 13px; background: #fff; }
@@ -72,11 +57,8 @@
     .port-label { color: #7c2d12; background: rgba(255,255,255,.95); border: 1px solid #fed7aa; border-radius: 4px; padding: 2px 5px; font-size: 12px; font-weight: 650; white-space: nowrap; }
     .border-label { color: #155e75; background: rgba(255,255,255,.95); border: 1px solid #a5f3fc; border-radius: 4px; padding: 2px 5px; font-size: 12px; font-weight: 650; white-space: nowrap; }
     @media (max-width: 760px) {
-      .app-shell, .app-shell.sidebar-collapsed { grid-template-columns: 1fr; }
-      .sidebar { grid-template-columns: 1fr 1fr; }
-      .brand { grid-column: 1 / -1; }
       .workspace { grid-template-columns: 1fr; grid-template-rows: auto minmax(420px, 1fr); }
-      .control-pane { padding: 9px 11px; border-right: 0; border-bottom: 1px solid #d8dde5; max-height: 52vh; }
+      .control-pane { padding: 44px 11px 9px; border-right: 0; border-bottom: 1px solid #d8dde5; max-height: 52vh; }
       .map-pane { min-height: 48vh; }
       .stats, .countries { font-size: 12px; }
     }
@@ -84,11 +66,7 @@
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar" aria-label="Module navigation" data-i18n-aria-label="sidebar.aria">
-      <div class="brand"><strong>Brianhub GPS</strong><span data-i18n="brand.subtitle">Live trajectory and border recognition</span></div>
-      <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Collapse menu" data-i18n-aria-label="sidebar.toggle" aria-expanded="true">☰</button>
-      <button class="nav-btn" type="button" data-module="gps" aria-pressed="true" title="GPS trajectory" data-i18n-title="nav.gpsTitle"><span class="nav-icon" aria-hidden="true">&#8982;</span><span class="nav-text"><span class="nav-label" data-i18n="nav.gps">GPS trajectory</span><span class="nav-hint" data-i18n="nav.gpsHint">Search by device ID</span></span></button>
-    </aside>
+    <div class="language-switcher" aria-label="Language" data-i18n-aria-label="language.switcher"><button type="button" data-locale-switch="zh-CN" aria-pressed="false">&#20013;&#25991;</button><button type="button" data-locale-switch="en-US" aria-pressed="true">English</button></div>
     <main class="workspace">
       <div class="control-pane">
         <section class="module-panel active" id="module-gps" aria-label="GPS trajectory search" data-i18n-aria-label="module.aria" data-module="gps">
@@ -98,7 +76,6 @@
             <button type="button" data-map-provider="esri-imagery" aria-pressed="false" data-i18n="mapProvider.satellite">Satellite</button>
             <button type="button" data-map-provider="openstreetmap" aria-pressed="false">OSM</button>
             <button type="button" id="cache-map-tiles" data-i18n="mapProvider.cache">Cache current map</button>
-            <div class="language-switcher" aria-label="Language" data-i18n-aria-label="language.switcher"><button type="button" data-locale-switch="zh-CN" aria-pressed="false">&#20013;&#25991;</button><button type="button" data-locale-switch="en-US" aria-pressed="true">English</button></div>
             <span class="query-status" id="tile-cache-status"></span>
           </div>
           <form class="query-bar" id="device-query-form">
@@ -143,7 +120,6 @@
     let currentMap = null;
     let baseLayer = null;
     let mapProvider = 'esri-street';
-    const SIDEBAR_STORAGE_KEY = 'gps.sidebarCollapsed';
     const apiBaseUrl = window.location.pathname.startsWith('/gps') ? '/gps' : 'http://127.0.0.1:8015';
     const colors = { CN: '#d7263d', KZ: '#2563eb', RU: '#7c3aed', BY: '#059669', PL: '#ea580c' };
     const cssCode = { CN: 'cn', KZ: 'kz', RU: 'ru', BY: 'by', PL: 'pl' };
@@ -165,12 +141,6 @@
     const SUPPORTED_LOCALES = ['zh-CN', 'en-US'];
     const UI_COPY = {
       "en-US": {
-            "sidebar.aria": "Module navigation",
-            "sidebar.toggle": "Collapse menu",
-            "brand.subtitle": "Live trajectory and border recognition",
-            "nav.gpsTitle": "GPS trajectory",
-            "nav.gps": "GPS trajectory",
-            "nav.gpsHint": "Search by device ID",
             "module.aria": "GPS trajectory search",
             "mapProvider.aria": "Base map",
             "mapProvider.label": "Base map",
@@ -210,12 +180,6 @@
             "query.failed": "Query failed: {message}. Confirm the API is running at {apiBaseUrl}"
       },
       "zh-CN": {
-            "sidebar.aria": "\u6a21\u5757\u5bfc\u822a",
-            "sidebar.toggle": "\u6298\u53e0\u83dc\u5355",
-            "brand.subtitle": "\u5b9e\u65f6\u8f68\u8ff9\u4e0e\u53e3\u5cb8\u8bc6\u522b",
-            "nav.gpsTitle": "GPS\u8f68\u8ff9",
-            "nav.gps": "GPS\u8f68\u8ff9",
-            "nav.gpsHint": "\u8bbe\u5907\u53f7\u8f68\u8ff9\u67e5\u8be2",
             "module.aria": "GPS\u8f68\u8ff9\u67e5\u8be2",
             "mapProvider.aria": "\u5730\u56fe\u5e95\u56fe",
             "mapProvider.label": "\u5e95\u56fe",
@@ -407,19 +371,6 @@
         navigator.serviceWorker.register(`${window.location.pathname.replace(/\/[^/]*$/, '/') || '/gps/'}sw.js`).catch(() => {});
       }
     }
-    function bindSidebarToggle() {
-      const shell = document.querySelector('.app-shell');
-      const toggle = document.getElementById('sidebar-toggle');
-      const initialCollapsed = localStorage.getItem(SIDEBAR_STORAGE_KEY) === 'true';
-      shell.classList.toggle('sidebar-collapsed', initialCollapsed);
-      toggle.setAttribute('aria-expanded', String(!initialCollapsed));
-      toggle.addEventListener('click', () => {
-        const collapsed = shell.classList.toggle('sidebar-collapsed');
-        toggle.setAttribute('aria-expanded', String(!collapsed));
-        localStorage.setItem(SIDEBAR_STORAGE_KEY, String(collapsed));
-        setTimeout(() => currentMap && currentMap.invalidateSize(), 180);
-      });
-    }
     function installGpsHistoryGuard() {
       if (!window.history || !window.history.replaceState || !window.history.pushState) return;
       const currentState = window.history.state || {};
@@ -592,7 +543,6 @@
     applyLocale();
     bindLocaleSwitchControls();
     bindQueryForm();
-    bindSidebarToggle();
     installGpsHistoryGuard();
     bindMapProviderControls();
     bindTileCacheControls();
