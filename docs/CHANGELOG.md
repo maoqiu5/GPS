@@ -2,6 +2,24 @@
 
 本文档用于记录 GPS 轨迹可视化项目每次功能更新、修复和算法调整。
 
+
+## v0.31.0 - 2026-08-08
+
+### Added
+
+- GPS trajectory page now follows the BrianHub unified bilingual standard for UI text, supporting only `zh-CN` and `en-US`.
+- Added Chinese / English switcher that immediately updates UI text and writes the shared `brianhub_locale` cookie with `Path=/`, `Max-Age=31536000`, and `SameSite=Lax`.
+- Added `tools/test_gps_i18n.js` regression coverage for locale priority, cookie behavior, fallback handling and Chinese dictionary encoding.
+
+### Notes
+
+- Translation is limited to UI chrome. Business data from API responses, device IDs, route text, port/country names and reports remain unchanged.
+
+### Verification
+
+- `node tools/test_gps_i18n.js` passed.
+- `node tools/test_gps_only_html_smoke.js` passed.
+
 ## v0.30.0 - 2026-07-25
 
 - 铁路运价结果区移除无直接改价意义的“供应商/市场参考”名单，改为“定价策略”面板：预测模式展示公里模型价、市场系数后价格、公共报价锚点、TC 执行价调整、锚点权重和暂未纳入自动改价的外部来源。

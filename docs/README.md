@@ -17,6 +17,7 @@
 
 - 文档标准见门户：`/root/apps/portal/docs/DOCUMENTATION_STANDARD.md`
 - 网关、SSO 和 AI 配置主规则见门户：`/root/apps/portal/docs/BRIANHUB_GATEWAY_AND_SSO.md`
+- Unified bilingual UI follows BrianHub Portal standard: `zh-CN` / `en-US`; priority is `X-BrianHub-Locale`, then `brianhub_locale`, then `en-US`.
 
 ## 维护规则
 

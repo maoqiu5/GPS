@@ -223,6 +223,17 @@ GPS 轨迹可视化项目用于读取设备导出的 GPS 轨迹点数据和服�
 - 轨迹线应清晰可见，避免被底图或图层遮挡。
 - 页面应支持本地 HTTP 服务访问，例如 `http://localhost:8765/trajectory-map-interactive.html`。
 
+
+### 6.1 BrianHub bilingual UI standard
+
+- GPS trajectory page supports only `zh-CN` and `en-US`.
+- Initial locale priority follows BrianHub Portal: `X-BrianHub-Locale`, then shared `brianhub_locale` cookie, then default `en-US`.
+- Unknown locale values fall back to `en-US`.
+- The page provides a Chinese / English switcher; switching updates the current page immediately and writes `brianhub_locale` with `Path=/; Max-Age=31536000; SameSite=Lax`.
+- Only UI chrome is translated: navigation, titles, buttons, forms, validation/error/empty messages, filters and table headers.
+- Business data is not auto-translated, including device IDs, API route text, country/port names returned by backend, user input, reports and document bodies.
+- Regression coverage: `node tools/test_gps_i18n.js` plus `node tools/test_gps_only_html_smoke.js`.
+
 ## 7. 已知限制
 
 - 直接使用 `file://` 打开时，部分浏览器可能限制脚本、缓存或网络请求；推荐通过本地 HTTP 服务打开。

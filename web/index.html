@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,6 +34,9 @@
     .map-provider button, .query-bar button { height: 32px; border: 1px solid #1f2937; border-radius: 6px; background: #1f2937; color: #fff; padding: 0 12px; font: inherit; font-size: 13px; cursor: pointer; }
     .map-provider button { height: 30px; border-color: #cfd6df; background: #fff; color: #18202a; padding: 0 10px; }
     .map-provider button[aria-pressed="true"] { background: #0f766e; border-color: #0f766e; color: #fff; }
+    .language-switcher { display: inline-flex; gap: 4px; margin-left: auto; padding: 2px; border: 1px solid #cfd6df; border-radius: 7px; background: #fff; }
+    .language-switcher button { height: 26px; border: 0; border-radius: 5px; background: transparent; color: #4c5968; padding: 0 8px; }
+    .language-switcher button[aria-pressed="true"] { background: #0f766e; color: #fff; }
     .query-bar input, .query-bar select { height: 30px; min-width: 180px; border: 1px solid #cfd6df; border-radius: 6px; padding: 0 9px; font: inherit; font-size: 13px; background: #fff; }
     .query-bar button:disabled { opacity: .58; cursor: not-allowed; }
     .query-status { font-size: 13px; color: #4c5968; min-height: 1em; }
@@ -81,51 +84,52 @@
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar" aria-label="模块导航">
-      <div class="brand"><strong>Brianhub GPS</strong><span>实时轨迹与口岸识别</span></div>
-      <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="折叠菜单" aria-expanded="true">☰</button>
-      <button class="nav-btn" type="button" data-module="gps" aria-pressed="true" title="GPS轨迹"><span class="nav-icon" aria-hidden="true">⌖</span><span class="nav-text"><span class="nav-label">GPS轨迹</span><span class="nav-hint">设备号轨迹查询</span></span></button>
+    <aside class="sidebar" aria-label="Module navigation" data-i18n-aria-label="sidebar.aria">
+      <div class="brand"><strong>Brianhub GPS</strong><span data-i18n="brand.subtitle">Live trajectory and border recognition</span></div>
+      <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Collapse menu" data-i18n-aria-label="sidebar.toggle" aria-expanded="true">☰</button>
+      <button class="nav-btn" type="button" data-module="gps" aria-pressed="true" title="GPS trajectory" data-i18n-title="nav.gpsTitle"><span class="nav-icon" aria-hidden="true">&#8982;</span><span class="nav-text"><span class="nav-label" data-i18n="nav.gps">GPS trajectory</span><span class="nav-hint" data-i18n="nav.gpsHint">Search by device ID</span></span></button>
     </aside>
     <main class="workspace">
       <div class="control-pane">
-        <section class="module-panel active" id="module-gps" aria-label="GPS轨迹查询" data-module="gps">
-          <div class="map-provider" aria-label="地图底图">
-            <strong>底图</strong>
-            <button type="button" data-map-provider="esri-street" aria-pressed="true">街道</button>
-            <button type="button" data-map-provider="esri-imagery" aria-pressed="false">卫星</button>
+        <section class="module-panel active" id="module-gps" aria-label="GPS trajectory search" data-i18n-aria-label="module.aria" data-module="gps">
+          <div class="map-provider" aria-label="Base map" data-i18n-aria-label="mapProvider.aria">
+            <strong data-i18n="mapProvider.label">Base map</strong>
+            <button type="button" data-map-provider="esri-street" aria-pressed="true" data-i18n="mapProvider.street">Street</button>
+            <button type="button" data-map-provider="esri-imagery" aria-pressed="false" data-i18n="mapProvider.satellite">Satellite</button>
             <button type="button" data-map-provider="openstreetmap" aria-pressed="false">OSM</button>
-            <button type="button" id="cache-map-tiles">缓存当前地图</button>
+            <button type="button" id="cache-map-tiles" data-i18n="mapProvider.cache">Cache current map</button>
+            <div class="language-switcher" aria-label="Language" data-i18n-aria-label="language.switcher"><button type="button" data-locale-switch="zh-CN" aria-pressed="false">&#20013;&#25991;</button><button type="button" data-locale-switch="en-US" aria-pressed="true">English</button></div>
             <span class="query-status" id="tile-cache-status"></span>
           </div>
           <form class="query-bar" id="device-query-form">
-            <label for="device-query-input">设备号</label>
-            <input id="device-query-input" name="device_id" placeholder="输入设备号" autocomplete="off">
-            <select id="device-quick-select" aria-label="选择设备"><option value="">加载设备列表...</option></select>
-            <button id="device-query-button" type="submit">查询轨迹</button>
+            <label for="device-query-input" data-i18n="query.deviceLabel">Device ID</label>
+            <input id="device-query-input" name="device_id" placeholder="Enter device ID" data-i18n-placeholder="query.devicePlaceholder" autocomplete="off">
+            <select id="device-quick-select" aria-label="Select device" data-i18n-aria-label="query.selectAria"><option value="" data-i18n="query.loadingDevices">Loading devices...</option></select>
+            <button id="device-query-button" type="submit" data-i18n="query.submit">Search trajectory</button>
             <span class="query-status" id="query-status"></span>
           </form>
           <div class="topline">
-            <h1>GPS 轨迹总览</h1>
+            <h1 data-i18n="overview.title">GPS trajectory overview</h1>
             <div class="stats">
-              <span>设备 <strong id="device">-</strong></span>
-              <span>点位 <strong id="count">0 / 原始 0</strong></span>
-              <span>剔除漂移 <strong id="removed-count">0</strong></span>
-              <span>总时效 <strong id="total-duration">-</strong></span>
+              <span><span data-i18n="stats.device">Device</span> <strong id="device">-</strong></span>
+              <span><span data-i18n="stats.points">Points</span> <strong id="count">0 / raw 0</strong></span>
+              <span><span data-i18n="stats.removed">Drift removed</span> <strong id="removed-count">0</strong></span>
+              <span><span data-i18n="stats.totalDuration">Total duration</span> <strong id="total-duration">-</strong></span>
             </div>
           </div>
           <div class="stats">
-            <span>最新位置：<strong id="latest-position">-</strong></span>
-            <span>最新时间：<strong id="latest-time">-</strong></span>
+            <span><span data-i18n="stats.latestPosition">Latest position</span>: <strong id="latest-position">-</strong></span>
+            <span><span data-i18n="stats.latestTime">Latest update</span>: <strong id="latest-time">-</strong></span>
           </div>
           <div class="countries" id="countries"></div>
-          <section class="route-panel" aria-label="自动识别运输线路">
-            <div class="route-head"><strong>自动识别运输线路</strong><span id="route-total">总时效 -</span></div>
-            <div class="route-text" id="route-text">请选择设备查询轨迹。</div>
-            <div class="route-table-wrap"><table><thead><tr><th>区段</th><th>发车</th><th>到达</th><th>运行</th><th>口岸等待</th></tr></thead><tbody id="route-segments"></tbody></table></div>
+          <section class="route-panel" aria-label="Auto-detected transport route" data-i18n-aria-label="route.aria">
+            <div class="route-head"><strong data-i18n="route.title">Auto-detected transport route</strong><span id="route-total">Total duration -</span></div>
+            <div class="route-text" id="route-text" data-i18n="route.empty">Select a device to query trajectory.</div>
+            <div class="route-table-wrap"><table><thead><tr><th data-i18n="route.segment">Segment</th><th data-i18n="route.depart">Depart</th><th data-i18n="route.arrive">Arrive</th><th data-i18n="route.runtime">Transit</th><th data-i18n="route.wait">Border wait</th></tr></thead><tbody id="route-segments"></tbody></table></div>
           </section>
         </section>
       </div>
-      <div class="map-pane"><div id="map" role="img" aria-label="GPS轨迹地图"></div></div>
+      <div class="map-pane"><div id="map" role="img" aria-label="GPS trajectory map" data-i18n-aria-label="map.aria"></div></div>
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -157,6 +161,149 @@
         options: { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors | reverse geocoding: Nominatim' }
       }
     };
+
+    const SUPPORTED_LOCALES = ['zh-CN', 'en-US'];
+    const UI_COPY = {
+      "en-US": {
+            "sidebar.aria": "Module navigation",
+            "sidebar.toggle": "Collapse menu",
+            "brand.subtitle": "Live trajectory and border recognition",
+            "nav.gpsTitle": "GPS trajectory",
+            "nav.gps": "GPS trajectory",
+            "nav.gpsHint": "Search by device ID",
+            "module.aria": "GPS trajectory search",
+            "mapProvider.aria": "Base map",
+            "mapProvider.label": "Base map",
+            "mapProvider.street": "Street",
+            "mapProvider.satellite": "Satellite",
+            "mapProvider.cache": "Cache current map",
+            "language.switcher": "Language",
+            "query.deviceLabel": "Device ID",
+            "query.devicePlaceholder": "Enter device ID",
+            "query.selectAria": "Select device",
+            "query.loadingDevices": "Loading devices...",
+            "query.submit": "Search trajectory",
+            "overview.title": "GPS trajectory overview",
+            "stats.device": "Device",
+            "stats.points": "Points",
+            "stats.pointsValue": "{count} / raw {raw}",
+            "stats.removed": "Drift removed",
+            "stats.totalDuration": "Total duration",
+            "stats.latestPosition": "Latest position",
+            "stats.latestTime": "Latest update",
+            "stats.countryPoints": "{count} points",
+            "stats.removedPill": "{count} drift points removed",
+            "route.aria": "Auto-detected transport route",
+            "route.title": "Auto-detected transport route",
+            "route.total": "Total duration {duration}",
+            "route.empty": "Select a device to query trajectory.",
+            "route.segment": "Segment",
+            "route.depart": "Depart",
+            "route.arrive": "Arrive",
+            "route.runtime": "Transit",
+            "route.wait": "Border wait",
+            "map.aria": "GPS trajectory map",
+            "query.selectDevice": "Select a trajectory device...",
+            "query.devicesUnavailable": "Device list unavailable",
+            "query.loading": "Querying database...",
+            "query.noData": "No trajectory points found for this device",
+            "query.failed": "Query failed: {message}. Confirm the API is running at {apiBaseUrl}"
+      },
+      "zh-CN": {
+            "sidebar.aria": "\u6a21\u5757\u5bfc\u822a",
+            "sidebar.toggle": "\u6298\u53e0\u83dc\u5355",
+            "brand.subtitle": "\u5b9e\u65f6\u8f68\u8ff9\u4e0e\u53e3\u5cb8\u8bc6\u522b",
+            "nav.gpsTitle": "GPS\u8f68\u8ff9",
+            "nav.gps": "GPS\u8f68\u8ff9",
+            "nav.gpsHint": "\u8bbe\u5907\u53f7\u8f68\u8ff9\u67e5\u8be2",
+            "module.aria": "GPS\u8f68\u8ff9\u67e5\u8be2",
+            "mapProvider.aria": "\u5730\u56fe\u5e95\u56fe",
+            "mapProvider.label": "\u5e95\u56fe",
+            "mapProvider.street": "\u8857\u9053",
+            "mapProvider.satellite": "\u536b\u661f",
+            "mapProvider.cache": "\u7f13\u5b58\u5f53\u524d\u5730\u56fe",
+            "language.switcher": "\u8bed\u8a00",
+            "query.deviceLabel": "\u8bbe\u5907\u53f7",
+            "query.devicePlaceholder": "\u8f93\u5165\u8bbe\u5907\u53f7",
+            "query.selectAria": "\u9009\u62e9\u8bbe\u5907",
+            "query.loadingDevices": "\u52a0\u8f7d\u8bbe\u5907\u5217\u8868...",
+            "query.submit": "\u67e5\u8be2\u8f68\u8ff9",
+            "overview.title": "GPS \u8f68\u8ff9\u603b\u89c8",
+            "stats.device": "\u8bbe\u5907",
+            "stats.points": "\u70b9\u4f4d",
+            "stats.pointsValue": "{count} / \u539f\u59cb {raw}",
+            "stats.removed": "\u5254\u9664\u6f02\u79fb",
+            "stats.totalDuration": "\u603b\u65f6\u6548",
+            "stats.latestPosition": "\u6700\u65b0\u4f4d\u7f6e",
+            "stats.latestTime": "\u6700\u65b0\u65f6\u95f4",
+            "stats.countryPoints": "{count} \u70b9",
+            "stats.removedPill": "\u5df2\u5254\u9664 {count} \u4e2a\u6f02\u79fb\u70b9",
+            "route.aria": "\u81ea\u52a8\u8bc6\u522b\u8fd0\u8f93\u7ebf\u8def",
+            "route.title": "\u81ea\u52a8\u8bc6\u522b\u8fd0\u8f93\u7ebf\u8def",
+            "route.total": "\u603b\u65f6\u6548 {duration}",
+            "route.empty": "\u8bf7\u9009\u62e9\u8bbe\u5907\u67e5\u8be2\u8f68\u8ff9\u3002",
+            "route.segment": "\u533a\u6bb5",
+            "route.depart": "\u53d1\u8f66",
+            "route.arrive": "\u5230\u8fbe",
+            "route.runtime": "\u8fd0\u884c",
+            "route.wait": "\u53e3\u5cb8\u7b49\u5f85",
+            "map.aria": "GPS\u8f68\u8ff9\u5730\u56fe",
+            "query.selectDevice": "\u9009\u62e9\u6709\u8f68\u8ff9\u8bbe\u5907...",
+            "query.devicesUnavailable": "\u8bbe\u5907\u5217\u8868\u4e0d\u53ef\u7528",
+            "query.loading": "\u6b63\u5728\u67e5\u8be2\u6570\u636e\u5e93...",
+            "query.noData": "\u6570\u636e\u5e93\u6ca1\u6709\u67e5\u5230\u8be5\u8bbe\u5907\u7684\u8f68\u8ff9\u70b9",
+            "query.failed": "\u67e5\u8be2\u5931\u8d25\uff1a{message}\u3002\u8bf7\u786e\u8ba4 API \u5df2\u542f\u52a8\u5728 {apiBaseUrl}"
+      }
+};
+    function normalizeLocale(locale) { return SUPPORTED_LOCALES.includes(String(locale || '')) ? String(locale) : 'en-US'; }
+    function getCookieValue(name) {
+      return String(document.cookie || '').split(';').map(part => part.trim()).reduce((found, part) => {
+        if (found) return found;
+        const eq = part.indexOf('=');
+        return eq > 0 && part.slice(0, eq) === name ? decodeURIComponent(part.slice(eq + 1)) : '';
+      }, '');
+    }
+    function getHeaderLocaleCandidate() {
+      if (typeof window !== 'undefined' && window.BRIANHUB_LOCALE) return window.BRIANHUB_LOCALE;
+      const meta = document.querySelector('meta[name="brianhub-locale"]');
+      return meta && meta.getAttribute ? meta.getAttribute('content') : '';
+    }
+    function resolveInitialLocale(options = {}) {
+      const hasHeader = Object.prototype.hasOwnProperty.call(options, 'headerLocale') && options.headerLocale !== '' && options.headerLocale != null;
+      if (hasHeader) return normalizeLocale(options.headerLocale);
+      const cookieLocale = Object.prototype.hasOwnProperty.call(options, 'cookieLocale') ? options.cookieLocale : '';
+      if (cookieLocale) return normalizeLocale(cookieLocale);
+      return 'en-US';
+    }
+    let currentLocale = resolveInitialLocale({ headerLocale: getHeaderLocaleCandidate(), cookieLocale: getCookieValue('brianhub_locale') });
+    function t(key, vars = {}) {
+      const template = (UI_COPY[currentLocale] && UI_COPY[currentLocale][key]) || UI_COPY['en-US'][key] || key;
+      return template.replace(/\{(\w+)\}/g, (_, name) => vars[name] == null ? '' : String(vars[name]));
+    }
+    function setLocaleCookie(locale) {
+      document.cookie = `brianhub_locale=${encodeURIComponent(normalizeLocale(locale))}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    }
+    function applyLocale() {
+      document.documentElement.lang = currentLocale;
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.setAttribute('placeholder', t(el.dataset.i18nPlaceholder)); });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.i18nAriaLabel)); });
+      document.querySelectorAll('[data-i18n-title]').forEach(el => { el.setAttribute('title', t(el.dataset.i18nTitle)); });
+      document.querySelectorAll('[data-locale-switch]').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.localeSwitch === currentLocale)); });
+    }
+    function setLocale(locale, options = {}) {
+      currentLocale = normalizeLocale(locale);
+      if (options.writeCookie !== false) setLocaleCookie(currentLocale);
+      applyLocale();
+      initHeader();
+      if (currentMap) init();
+    }
+    function bindLocaleSwitchControls() {
+      document.querySelectorAll('[data-locale-switch]').forEach(button => {
+        button.addEventListener('click', () => setLocale(button.dataset.localeSwitch));
+      });
+    }
+    window.GpsI18n = { UI_COPY, normalizeLocale, resolveInitialLocale, setLocaleCookie, setLocale, getCurrentLocale: () => currentLocale, t };
     function escapeHtml(value) { return String(value ?? '').replace(/[&<>'"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch])); }
     function setText(id, value) { const el = document.getElementById(id); if (el) el.textContent = value; }
     function formatTime(value) {
@@ -191,7 +338,7 @@
     function initHeader() {
       const latest = latestPoint();
       setText('device', meta.device || '-');
-      setText('count', `${meta.count || 0} / 原始 ${meta.rawCount || 0}`);
+      setText('count', t('stats.pointsValue', { count: meta.count || 0, raw: meta.rawCount || 0 }));
       setText('removed-count', meta.removedCount || 0);
       setText('total-duration', meta.totalDuration || '-');
       setText('latest-position', latest ? `${latest.country || '-'} ${formatCoord(latest.lon)}, ${formatCoord(latest.lat)}` : '-');
@@ -199,10 +346,11 @@
       const countries = Array.isArray(meta.countries) ? meta.countries : [];
       document.getElementById('countries').innerHTML = countries.map(name => {
         const p = points.find(item => item.country === name) || {};
-        return `<span class="pill"><span class="dot ${cssCode[p.countryCode] || ''}"></span>${escapeHtml(name)} ${escapeHtml((meta.countryCounts || {})[name] || 0)} 点</span>`;
-      }).join('') + `<span class="pill removed">已剔除 ${escapeHtml(meta.removedCount || 0)} 个漂移点</span>`;
-      setText('route-total', `总时效 ${route.totalDuration || '-'}`);
-      setText('route-text', route.routeText || '请选择设备查询轨迹。');
+        const count = (meta.countryCounts || {})[name] || 0;
+        return `<span class="pill"><span class="dot ${cssCode[p.countryCode] || ''}"></span>${escapeHtml(name)} ${escapeHtml(t('stats.countryPoints', { count }))}</span>`;
+      }).join('') + `<span class="pill removed">${escapeHtml(t('stats.removedPill', { count: meta.removedCount || 0 }))}</span>`;
+      setText('route-total', t('route.total', { duration: route.totalDuration || '-' }));
+      setText('route-text', route.routeText || t('route.empty'));
       document.getElementById('route-segments').innerHTML = (route.segments || []).map(seg => `<tr><td>${escapeHtml(seg.name)}</td><td>${escapeHtml(formatTime(seg.departTime))}</td><td>${escapeHtml(formatTime(seg.arrivalTime))}</td><td>${escapeHtml(seg.transportDuration)}</td><td>${escapeHtml(seg.portWait)}</td></tr>`).join('');
     }
     function setBaseLayer(map, providerName = mapProvider) {
@@ -299,7 +447,7 @@
       const button = document.getElementById('device-query-button');
       const select = document.getElementById('device-quick-select');
       status.classList.remove('error');
-      status.textContent = '正在查询数据库...';
+      status.textContent = t('query.loading');
       button.disabled = true;
       if (select) select.disabled = true;
       try {
@@ -310,14 +458,14 @@
           throw new Error(errorText || `HTTP ${response.status}`);
         }
         const data = await response.json();
-        if (!data.points || data.points.length === 0) throw new Error('数据库没有查到该设备的轨迹点');
+        if (!data.points || data.points.length === 0) throw new Error(t('query.noData'));
         applyTrajectoryData(data);
         document.getElementById('device-query-input').value = deviceId;
         if (select) select.value = deviceId;
         status.textContent = '';
       } catch (err) {
         status.classList.add('error');
-        status.textContent = `查询失败：${err.message || err}。请确认 API 已启动在 ${apiBaseUrl}`;
+        status.textContent = t('query.failed', { message: err.message || err, apiBaseUrl });
       } finally {
         button.disabled = false;
         if (select) select.disabled = false;
@@ -332,14 +480,14 @@
         if (!response.ok) throw new Error('HTTP ' + response.status);
         const data = await response.json();
         const devices = data.items || [];
-        select.innerHTML = '<option value="">选择有轨迹设备...</option>' + devices.map(item => {
+        select.innerHTML = `<option value="">${escapeHtml(t('query.selectDevice'))}</option>` + devices.map(item => {
           const count = item.trackPointCount == null ? '-' : item.trackPointCount;
           const duration = item.totalDuration || '-';
           return `<option value="${escapeHtml(item.deviceId)}">${escapeHtml(item.deviceId)} · ${count}点 · ${escapeHtml(duration)}</option>`;
         }).join('');
         if (devices.length && status) status.textContent = '';
       } catch (_) {
-        select.innerHTML = '<option value="">设备列表不可用</option>';
+        select.innerHTML = `<option value="">${escapeHtml(t('query.devicesUnavailable'))}</option>`;
       }
     }
     function bindQueryForm() {
@@ -441,6 +589,8 @@
         mapEl.innerHTML = '<div style="padding:16px;color:#b91c1c;">页面脚本错误：' + escapeHtml(event.message) + '</div>';
       }
     });
+    applyLocale();
+    bindLocaleSwitchControls();
     bindQueryForm();
     bindSidebarToggle();
     installGpsHistoryGuard();
