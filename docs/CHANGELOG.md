@@ -3,6 +3,18 @@
 本文档用于记录 GPS 轨迹可视化项目每次功能更新、修复和算法调整。
 
 
+## v0.33.0 - 2026-08-25
+
+### Changed
+
+- 按 rates 接管确认，从 `scripts/gps_query_api.py` 移除 `/api/truck-stations`、`/api/truck-market-references`、`/api/truck-distance` 三个 truck API 路由。
+- GPS API 不再提供卡车运价接口；相关功能由 rates 项目 `/rates/api/*` 承接。
+
+### Verification
+
+- `tools/test_gps_only_api.py` 中 truck 路由移除断言应通过；当前环境无法直接运行，已做静态确认。
+
+
 ## v0.32.0 - 2026-08-09
 
 ### Changed

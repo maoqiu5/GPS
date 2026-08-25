@@ -1919,58 +1919,6 @@ class GpsApiHandler(BaseHTTPRequestHandler):
                 self.send_json(200, {"items": self.repo.list_trajectory_devices(params)})
             elif path == "/api/port-definitions":
                 self.send_json(200, {"items": self.repo.list_port_definitions(params)})
-            elif path == "/api/truck-stations":
-                self.send_json(200, {"items": self.repo.truck_stations()})
-            elif path == "/api/truck-market-references":
-                self.send_json(200, self.repo.truck_market_references(None))
-            elif path == "/api/truck-distance":
-                truck_stations = self.repo.truck_stations()
-                freight_rules = self.repo.truck_freight_rules()
-                address = first_param(params, "address")
-                lat = first_param(params, "lat")
-                lon = first_param(params, "lon")
-                return_station_slug = first_param(params, "return_station")
-                requested_station_group = first_param(params, "station_group")
-                if address:
-                    destination = geocode_address(address)
-                elif lat and lon:
-                    destination = {
-                        "label": f"{lat}, {lon}",
-                        "lat": float(lat),
-                        "lon": float(lon),
-                        "source": "coordinates",
-                    }
-                else:
-                    raise ValueError("address or lat/lon is required")
-
-                matched_stations, station_group, station_group_mode = filter_truck_stations_for_group(
-                    truck_stations,
-                    requested_station_group,
-                )
-                if station_group_mode == "auto":
-                    matched_stations, station_group = filter_truck_stations_for_destination(truck_stations, destination)
-                return_station = find_truck_station(return_station_slug, truck_stations)
-                routes = calculate_truck_distances(
-                    destination,
-                    return_station_slug,
-                    matched_stations,
-                    freight_rules,
-                    return_station,
-                )
-                self.send_json(
-                    200,
-                    {
-                        "destination": destination,
-                        "items": routes,
-                        "marketReferences": self.repo.truck_market_references(destination),
-                        "meta": {
-                            "stationGroup": station_group,
-                            "stationGroupMode": station_group_mode,
-                            "stationCount": len(matched_stations),
-                            "returnStation": return_station,
-                        },
-                    },
-                )
             elif path == "/bindings":
                 self.send_json(200, {"items": self.repo.list_bindings(params)})
             elif path.startswith("/tracks/device/"):
